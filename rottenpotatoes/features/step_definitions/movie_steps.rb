@@ -19,7 +19,11 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  fail "Unimplemented"
+  if !(page.body.to_s.match(/#{e1}(.*)#{e2}/m))
+    fail "#{e1} does not come before #{e2}"
+  end
+  # else pass
+  # fail "Unimplemented"
 end
 
 # Make it easier to express checking or unchecking several boxes at once
